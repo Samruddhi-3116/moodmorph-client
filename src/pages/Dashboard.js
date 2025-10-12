@@ -1,8 +1,9 @@
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Companion from '../components/Companion';
+import { getAffirmation } from '../utils/affirmations';
 
 function getTimeGreeting(name) {
   const hour = new Date().getHours();
@@ -17,17 +18,32 @@ function getTimeGreeting(name) {
 }
 
 function Dashboard() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [mood, setMood] = useState('');
   const [showCompanion, setShowCompanion] = useState(false);
+  const [affirmation, setAffirmation] = useState('');
   const greeting = getTimeGreeting(user?.displayName || 'friend');
-  const { logout } = useAuth();
 
   const handleLogout = async () => {
     await logout();
     navigate('/login');
   };
+
+  useEffect(() => {
+    if (mood) {
+      const moodKey = mood.toLowerCase().includes('sad')
+        ? 'sad'
+        : mood.toLowerCase().includes('anxious')
+        ? 'anxious'
+        : mood.toLowerCase().includes('happy')
+        ? 'happy'
+        : 'neutral';
+
+      const message = getAffirmation(moodKey);
+      setAffirmation(message);
+    }
+  }, [mood]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-center px-4 sm:px-6 md:px-12 py-8">
@@ -35,7 +51,7 @@ function Dashboard() {
         <h1 className="text-3xl font-bold text-teal-400 mb-4">
           Welcome to MoodMorph, {user?.email}!
         </h1>
-        <p className="text-xl text-teal-300 mb-8">{greeting}</p>
+        <p className="text-xl text-teal-300 mb-4">{greeting}</p>
 
         {!showCompanion ? (
           <>
@@ -47,8 +63,14 @@ function Dashboard() {
               value={mood}
               onChange={(e) => setMood(e.target.value)}
             />
-            <div className="flex justify-center gap-6 mt-6">
-              <div className="flex flex-wrap justify-center gap-4 mt-6">
+
+            {affirmation && (
+              <div className="bg-gray-800 p-4 rounded shadow text-teal-200 text-lg italic mb-4">
+                {affirmation}
+              </div>
+            )}
+
+            <div className="flex flex-wrap justify-center gap-4 mt-6">
               <button
                 onClick={() => setShowCompanion(true)}
                 className="transition duration-300 ease-in-out transform hover:scale-105 hover:bg-teal-600 px-6 py-3 rounded font-bold text-lg bg-teal-500"
@@ -59,18 +81,14 @@ function Dashboard() {
                 onClick={handleLogout}
                 className="transition duration-300 ease-in-out transform hover:scale-105 hover:bg-red-600 px-6 py-3 rounded font-bold text-lg bg-red-500"
               >
-                
                 Logout
               </button>
-              </div>
             </div>
-
           </>
         ) : (
           <div className="animate-fadeIn">
             <Companion mood={mood || 'neutral'} />
           </div>
-
         )}
       </div>
     </div>
