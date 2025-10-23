@@ -3,6 +3,8 @@ import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { googleProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -41,7 +43,7 @@ function Login() {
           required
         />
         {error && <p className="text-red-400 mb-2">{error}</p>}
-        <div className="flex flex-wrap justify-center gap-4 mt-6">
+        <div className="flex flex-wrap justify-center gap-4 mt-6">    
         <button type="submit" className="transition duration-300 ease-in-out transform hover:scale-105 hover:bg-teal-600 px-6 py-3 rounded font-bold text-lg bg-teal-500 mx-auto block">
           Log In
         </button>
