@@ -31,11 +31,7 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
 
   const getGreeting = () => {
     const hour = new Date().getHours();
-    let timeGreeting = 'Hello';
-
-    if (hour < 12) timeGreeting = 'Good morning';
-    else if (hour < 18) timeGreeting = 'Good afternoon';
-    else timeGreeting = 'Good evening';
+    let timeGreeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
 
     if (moodLower.includes('sad')) return `${timeGreeting}. I'm here with you — gently.`;
     if (moodLower.includes('anxious')) return `${timeGreeting}. Let’s breathe together. You’re safe.`;
@@ -106,9 +102,9 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
   };
 
   return (
-    <div className={`${moodGradient} text-teal-300 p-6 rounded-lg mt-6 w-full max-w-4xl mx-auto text-center shadow-lg px-4 sm:px-6 lg:px-8`}>
+    <div className={`${moodGradient} text-indigo-300 p-6 rounded-lg mt-6 w-full max-w-4xl mx-auto text-center shadow-lg px-4 sm:px-6 lg:px-8`}>
       <p className="text-base sm:text-lg lg:text-xl italic">🧠 {getGreeting()}</p>
-      <p className="mt-4 text-sm sm:text-base lg:text-lg text-teal-200 italic">💬 {finalAffirmation}</p>
+      <p className="mt-4 text-sm sm:text-base lg:text-lg text-indigo-300 italic">💬 {finalAffirmation}</p>
 
       {mode === 'ask' && (
         <div className="mt-6">
@@ -121,7 +117,7 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
           />
           <button
             onClick={() => handleAsk()}
-            className="mt-3 w-full bg-teal-500 text-white py-2 rounded hover:bg-teal-600 transition"
+            className="mt-3 w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 transition font-bold"
           >
             Ask
           </button>
@@ -141,9 +137,9 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
         <div className="mt-6">
           <button
             onClick={() => handleAsk()}
-            className="w-full bg-teal-500 text-white py-2 rounded hover:bg-teal-600 transition"
+            className="w-full bg-indigo-500 text-black py-2 rounded hover:bg-moon-light transition font-bold"
           >
-            Analyze Journal
+            View
           </button>
         </div>
       )}
@@ -152,7 +148,7 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
         <div className="mt-6">
           <button
             onClick={() => handleAsk()}
-            className="w-full bg-teal-500 text-white py-2 rounded hover:bg-teal-600 transition"
+            className="w-full bg-indigo-500 text-black py-2 rounded hover:bg-moon-light transition font-bold"
           >
             Suggest Routines
           </button>
@@ -160,16 +156,16 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
       )}
 
       {loading ? (
-        <div className="mt-4 p-4 bg-gray-700 rounded shadow relative overflow-hidden">
+        <div className="mt-4 p-4 bg-moon-dark/80 rounded shadow relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-500/10 to-transparent animate-[shimmer_2s_infinite]"></div>
-          <p className="relative text-teal-400 italic">Thinking…</p>
+          <p className="relative text-moon-light italic">Thinking…</p>
         </div>
       ) : (
         answer && (
-          <div className="mt-4 p-4 bg-gray-700 rounded shadow text-left animate-fadeIn max-h-[60vh] overflow-y-auto">
-            <p className="font-semibold text-teal-400">MoodMorph says:</p>
+          <div className="mt-4 p-4 bg-moon-dark/80 rounded-lg shadow-lg text-left animate-fadeIn max-h-[60vh] overflow-y-auto">
+            <p className="font-semibold text-moon-light">MoodMorph says:</p>
             <p className="mt-2 italic text-teal-100 whitespace-pre-line">{answer}</p>
-            <p className="text-xs text-teal-500 mt-2">
+            <p className="text-xs text-moon-light mt-2">
               {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} • Response generated
             </p>
             <div className="mt-3 flex gap-4 flex-wrap">
@@ -183,11 +179,11 @@ function Companion({ mood = 'neutral', affirmation = '', mode = 'ask', journalTe
                 onClick={() => speechSynthesis.cancel()}
                 className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
               >
-                🔇 Stop Voice
+                ⏹ Stop Voice
               </button>
               <button
                 onClick={() => setAnswer('')}
-                className="text-sm text-teal-400 underline hover:text-teal-200 transition"
+                className="text-sm text-moon-light underline hover:text-white transition"
               >
                 Clear Response
               </button>

@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
-import { FaBars, FaTimes, FaSmile, FaCalendarAlt, FaHistory, FaBrain } from 'react-icons/fa';
+import { FaBars, FaTimes, FaSmile, FaCalendarAlt, FaHistory, FaBrain, FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800 text-white px-4 py-3 flex flex-col md:flex-row md:justify-between md:items-center shadow-md">
+    <nav className="bg-moon-dark/80 text-moon-light px-4 py-3 flex flex-col md:flex-row md:justify-between md:items-center shadow-md">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-teal-400">MoodMorph</h1>
+        <h1 className="text-xl font-bold text-moon-light">MoodMorph</h1>
         <button
-          className="md:hidden text-teal-300 text-2xl"
+          className="md:hidden text-moon-light text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
@@ -44,6 +44,12 @@ function Navbar() {
             <Link to="/history" className="hover:text-teal-300 flex items-center gap-2">
               <FaHistory /> History
             </Link>
+            <button
+              onClick={logout}
+              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded flex items-center gap-2 transition"
+            >
+              <FaSignOutAlt /> Logout
+            </button>
           </>
         )}
       </div>

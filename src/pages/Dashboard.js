@@ -36,39 +36,45 @@ function Dashboard() {
   const quote = "“Your present circumstances don’t determine where you can go; they merely determine where you start.” — Nido Qubein";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex flex-col justify-center px-4 sm:px-6 md:px-12 py-8">
-      <div className="max-w-3xl mx-auto w-full text-center animate-fadeIn">
-        <h1 className="text-4xl font-extrabold text-teal-400 mb-4 tracking-tight">
-          Welcome to MoodMorph, {user?.email}!
-        </h1>
-        <p className="text-xl text-teal-300 mb-6">{greeting}</p>
+    <div className="relative min-h-screen overflow-hidden text-white">
+      {/* 🌌 Background image */}
+      <div
+        className="absolute inset-0 bg-fixed bg-cover bg-center blur-sm opacity-100"
+        style={{ backgroundImage: "url('/background.jpg')" }}
+      />
 
-        {affirmation && (
-          <div className="bg-gray-800 p-5 rounded-lg shadow-lg text-teal-200 text-lg italic mb-4">
-            {affirmation}
-            <p className="text-sm text-teal-500 italic mt-2">{quote}</p>
+      {/* 🌙 Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-moon-dark/70 to-black/80 z-0" />
+
+      {/* 🌟 Foreground content */}
+      <div className="relative z-10 flex flex-col justify-center px-4 sm:px-6 md:px-12 py-8">
+        <div className="max-w-3xl mx-auto w-full text-center animate-fadeIn">
+          <h1 className="text-4xl font-extrabold text-moon-light mb-4 tracking-tight">
+            Welcome to MoodMorph, {user?.email}!
+          </h1>
+          <p className="text-xl text-moon-light mb-6">{greeting}</p>
+
+          {affirmation && (
+            <div className="bg-moon-dark/80 p-5 rounded-lg shadow-lg text-moon-light text-lg italic mb-4">
+              {affirmation}
+              <p className="text-sm text-moon-light italic mt-2">{quote}</p>
+            </div>
+          )}
+
+          <div className="flex flex-wrap justify-center gap-6 mt-6">
+            <button
+              onClick={() => navigate('/mood')}
+              className="transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-moon-light/40 px-6 py-3 rounded font-bold text-lg bg-moon-light text-black"
+            >
+              Check Mood
+            </button>
+            <button
+              onClick={() => navigate('/planner')}
+              className="transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/40 px-6 py-3 rounded font-bold text-lg bg-purple-500"
+            >
+              Plan My Day
+            </button>
           </div>
-        )}
-
-        <div className="flex flex-wrap justify-center gap-6 mt-6">
-          <button
-            onClick={() => navigate('/mood')}
-            className="transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/40 px-6 py-3 rounded font-bold text-lg bg-teal-500"
-          >
-            Check Mood
-          </button>
-          <button
-            onClick={() => navigate('/planner')}
-            className="transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/40 px-6 py-3 rounded font-bold text-lg bg-indigo-500"
-          >
-            Plan My Day
-          </button>
-          <button
-            onClick={handleLogout}
-            className="transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-red-500/40 px-6 py-3 rounded font-bold text-lg bg-red-500"
-          >
-            Logout
-          </button>
         </div>
       </div>
     </div>

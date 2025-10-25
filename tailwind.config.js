@@ -3,6 +3,13 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        moon: {
+          light: '#a5b4fc',     // Soft moonlight
+          DEFAULT: '#6366f1',   // Indigo glow
+          dark: '#312e81',      // Deep night
+        },
+      },
       animation: {
         fadeIn: 'fadeIn 0.8s ease-out forwards',
         shimmer: 'shimmer 2s infinite', // ✨ NEW

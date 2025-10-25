@@ -1,60 +1,74 @@
-# 🌿 MoodMorph
+# 🌈 MoodMorph
 
-**MoodMorph** is a calming, emotionally intelligent journaling and routine-planning app. It helps users reflect on their day, analyze their mood using sentiment analysis, and receive personalized affirmations and suggestions to support their well-being.
-
-Built with **React**, **Firebase**, and **Tailwind CSS**, MoodMorph is designed to feel intuitive, secure, and emotionally supportive.
+**MoodMorph** is an emotionally intelligent journaling companion built with React, Firebase, and Cohere. It helps users reflect on their feelings, track emotional patterns, and receive gentle, AI-powered support — all through a calming, voice-enabled interface.
 
 ---
 
-## 🧠 Features
+## 🔥 Features
 
-- ✍️ Journal Entry with sentiment-based mood detection  
-- 💬 Affirmations and Companion messages based on emotional tone  
-- 🧘‍♀️ Personalized suggestions based on journal content  
-- 🔐 Firebase Authentication (Login/Signup)  
-- 📦 Firestore storage for journal entries and moods  
-- 📱 Responsive design using Tailwind CSS  
-
----
-
-## 🗂️ Project Structure
-
-moodmorph-client/
-├── public/                  # Static assets
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── Companion.js     # Mood-based affirmations and support
-│   │   ├── Navbar.js        # Navigation bar
-│   │   └── PrivateRoute.js  # Auth-protected routes
-│   ├── context/
-│   │   └── AuthContext.js   # Global auth state
-│   ├── pages/               # Main app screens
-│   │   ├── Dashboard.js     # User hub
-│   │   ├── Login.js         # Login form
-│   │   ├── Signup.js        # Signup form
-│   │   ├── Mood.js          # Journal + mood analysis
-│   │   ├── Planner.js       # Routine planner
-│   │   └── MoodHistory.js   # Mood tracking (optional)
-│   ├── utils/
-│   │   └── affirmations.js  # Mood-based affirmations
-│   ├── App.js               # Main app layout and routing
-│   ├── firebase.js          # Firebase config
-│   ├── index.js             # Entry point
-│   └── index.css            # Global styles
-├── tailwind.config.js       # Tailwind customization
-├── package.json             # Dependencies and scripts
-└── README.md                # Project overview
+- 🎤 **Voice Input & Output** — Speak your mood, hear gentle reflections
+- 🔐 **Google Sign-In** — Secure, seamless authentication
+- 📊 **Emotion Analysis** — Powered by Cohere for nuanced mood insights
+- 🌈 **Responsive UI** — Clean, calming design across devices
+- 🧠 **Personalized Greetings** — Emotionally aware welcome messages
+- ✨ **Visual Polish** — Gradient backgrounds, shimmer effects, and BottomNav
+- 📁 **Lean File Structure** — Only essential components for clarity and performance
 
 ---
 
-## Github
+## 🚀 Tech Stack
 
-- https://github.com/Samruddhi-3116/moodmorph-client
+| Frontend     | Backend       | AI Integration | Hosting        |
+|--------------|---------------|----------------|----------------|
+| React + Tailwind | Firebase Auth & Firestore | Cohere API | Vercel & Firebase |
 
-## Firebase
+---
 
-- https://console.firebase.google.com/project/moodmorph-24ece/overview
+## 🛠️ Setup Instructions
 
-## Vercel
+1. Clone the repo  
+   `git clone https://github.com/SamrudDhi-3116/moodmorph-client.git`
 
-- https://vercel.com/samruddhi-kapses-projects/moodmorph-client-34m1
+2. Install dependencies  
+   `npm install`
+
+3. Add your `.env.local` file with Firebase + Cohere keys
+
+4. Run locally  
+   `npm start`
+
+---
+
+## 🌐 Live Demo
+
+- [Vercel Deployment](https://moodmorph-client.vercel.app)
+- [Firebase Hosting](https://moodmorph-xyz.web.app)
+
+---
+
+## 📬 Feedback & Contributions
+
+Feel free to open issues, suggest features, or fork the project.  
+Let’s build emotionally intelligent tech together 🌱
+
+## 📦 Key Dependencies
+
+| Package              | Purpose                                      |
+|----------------------|----------------------------------------------|
+| `react`              | Core UI library                              |
+| `react-dom`          | DOM rendering for React                      |
+| `react-router-dom`   | Client-side routing                          |
+| `react-icons`        | Icon library                                 |
+| `chart.js`           | Chart rendering                              |
+| `react-chartjs-2`    | React wrapper for Chart.js                   |
+| `firebase`           | Authentication, Firestore, Hosting           |
+| `sentiment`          | Text sentiment analysis                      |
+| `cra-template-tailwindcss` | Tailwind CSS integration with CRA     |
+| `web-vitals`         | Performance metrics                          |
+
+## 📦 Reproducibility
+
+To install all dependencies in a virtual environment:
+
+```bash
+npm install
